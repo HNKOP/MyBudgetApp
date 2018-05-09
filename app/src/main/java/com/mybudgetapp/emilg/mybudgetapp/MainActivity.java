@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mybudgetapp.emilg.mybudgetapp.HTTP.HttpTask;
+
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,33 +23,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonPushOnClick(View view) {
-        Toast.makeText(getApplicationContext(),"Button Clicked!",Toast.LENGTH_SHORT).show();
-        new HttpRequestTask().execute();
+        //Toast.makeText(getApplicationContext(),"Button Clicked!",Toast.LENGTH_SHORT).show();
+        HttpTask httpTask = new HttpTask();
+        httpTask.execute("http://192.168.1.38:58368/api/values/");
+        try
+        {
+            String res = httpTask.get();
+            //Toast.makeText(getApplicationContext(),res,Toast.LENGTH_SHORT).show();
+            TextView greetingIdText = (TextView) findViewById(R.id.textView);
+            greetingIdText.setText(res);
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+
+        }
     }
 
-    private class HttpRequestTask extends AsyncTask<Void, Void, Greeting> {
-        @Override
-        protected Greeting doInBackground(Void... params) {
-            try {
-                final String url = "http://rest-service.guides.spring.io/greeting";
-                RestTemplate restTemplate = new RestTemplate();
-                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-                
-                Greeting greeting = restTemplate.getForObject(url,Greeting.class);
 
-                return greeting;
-            } catch (Exception e) {
-                Log.e("MainActivity", e.getMessage(), e);
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Greeting greeting) {
-            TextView greetingIdText = (TextView) findViewById(R.id.textView);
-            greetingIdText.setText(greeting.getContent());
-        }
-
+    public void buttonPushPostOnClick(View view) {
+        //Пост запрос
     }
 }
