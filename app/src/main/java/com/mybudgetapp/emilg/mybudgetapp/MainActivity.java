@@ -10,8 +10,13 @@ import android.widget.Toast;
 
 import com.mybudgetapp.emilg.mybudgetapp.HTTP.HttpTask;
 
+import org.json.JSONObject;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+
+import java.io.DataOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public void buttonPushOnClick(View view) {
         //Toast.makeText(getApplicationContext(),"Button Clicked!",Toast.LENGTH_SHORT).show();
         HttpTask httpTask = new HttpTask();
-        httpTask.execute("http://192.168.1.38:58368/api/values/");
+        httpTask.execute("http://192.168.1.38:58368/api/values/","GET");
         try
         {
             String res = httpTask.get();
@@ -43,5 +48,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonPushPostOnClick(View view) {
         //Пост запрос
+        HttpTask httpTask = new HttpTask();
+        httpTask.execute("http://192.168.1.38:58368/api/values/","POST","DATA");
+        try
+        {
+            String res = httpTask.get();
+          // Toast.makeText(getApplicationContext(),res,Toast.LENGTH_SHORT).show();
+            TextView greetingIdText = (TextView) findViewById(R.id.textView);
+            greetingIdText.setText(res);
+
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+
+        }
     }
+
+
 }

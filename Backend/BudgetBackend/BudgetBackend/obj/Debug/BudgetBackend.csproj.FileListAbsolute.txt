@@ -56,3 +56,7 @@ D:\AndroidStudioProjects\MyBudgetApp\Backend\BudgetBackend\BudgetBackend\obj\Deb
 D:\AndroidStudioProjects\MyBudgetApp\Backend\BudgetBackend\BudgetBackend\obj\Debug\BudgetBackend.csproj.CoreCompileInputs.cache
 D:\AndroidStudioProjects\MyBudgetApp\Backend\BudgetBackend\BudgetBackend\obj\Debug\BudgetBackend.dll
 D:\AndroidStudioProjects\MyBudgetApp\Backend\BudgetBackend\BudgetBackend\obj\Debug\BudgetBackend.pdb
+D:\AndroidStudioProjects\MyBudgetApp\Backend\BudgetBackend\BudgetBackend\bin\EntityFramework.dll
+D:\AndroidStudioProjects\MyBudgetApp\Backend\BudgetBackend\BudgetBackend\bin\EntityFramework.SqlServer.dll
+D:\AndroidStudioProjects\MyBudgetApp\Backend\BudgetBackend\BudgetBackend\bin\EntityFramework.xml
+D:\AndroidStudioProjects\MyBudgetApp\Backend\BudgetBackend\BudgetBackend\bin\EntityFramework.SqlServer.xml

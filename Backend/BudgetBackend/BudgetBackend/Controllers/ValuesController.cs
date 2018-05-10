@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BudgetBackend.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,10 +10,12 @@ namespace BudgetBackend.Controllers
 {
     public class ValuesController : ApiController
     {
+        BudgetContext db = new BudgetContext();
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return new string[] { "Добро пожаловать", "Ответ с сервера!" };
+            User user = db.Users.Find(1);
+            return new string[] { "Добро пожаловать", "Ответ с сервера!", user.Login , user.Password };
         }
 
         // GET api/values/5
@@ -22,8 +25,12 @@ namespace BudgetBackend.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public string Post([FromBody]string value)
         {
+            String result = value;
+            return result + "обратка";
+
         }
 
         // PUT api/values/5
