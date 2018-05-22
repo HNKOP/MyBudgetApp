@@ -1,4 +1,6 @@
 ﻿using BudgetBackend.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +31,28 @@ namespace BudgetBackend.Controllers
         public string Post([FromBody]string value)
         {
             String result = value;
-            return result + "обратка";
+            JObject json = JObject.Parse(result);
+            JObject jObject;
+            User newuser = new User();
+            newuser.Login = json["Login"].Value<String>();
+            newuser.Password = json["Password"].Value<String>();
+            var users = db.Users.ToList();
+            foreach (var us in users)
+            {
+                if(us.Login == newuser.Login && us.Password == newuser.Password)
+                {
+                    jObject = new JObject();
+                    jObject.Add("msg","OK");
+                    jObject.Add("status","1");
+                    return JsonConvert.SerializeObject(jObject);
+                 //   return jObject.ToString();
+                }
+            }
+            jObject = new JObject();
+            jObject.Add("msg", "NO");
+            jObject.Add("status", "0");
+            return jObject.ToString();
+            
 
         }
 

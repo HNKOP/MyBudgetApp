@@ -183,12 +183,22 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AddBudgetController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\BudgetItemController.cs" />
+    <Compile Include="Controllers\GetBudgetItemsByBudgetIdController.cs" />
+    <Compile Include="Controllers\GetBudgetsByIdController.cs" />
+    <Compile Include="Controllers\GetUserIdController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\BudgetContext.cs" />
+    <Compile Include="Models\BudgetItem.cs" />
+    <Compile Include="Models\BudgetToUser.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

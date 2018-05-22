@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MyBudgetApp</string>
+    <string-array name="budgetitem_types">
+        <item>Доход</item>
+        <item>Расход</item>
+    </string-array>
 </resources>

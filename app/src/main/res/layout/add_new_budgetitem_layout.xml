@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/back2">
+    <TextView
+        android:id="@+id/choose_type_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Выберите тип транзакции:"
+        android:textSize="18sp"
+        android:layout_margin="10dp"/>
+
+    <EditText
+        android:id="@+id/add_budgetitem_nameview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Название"/>
+    <Spinner
+        android:id="@+id/add_budgetitem_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_budgetitem_nameview"
+        android:entries="@array/budgetitem_types"
+        android:layout_toRightOf="@id/choose_type_textview"
+        ></Spinner>
+    <EditText
+        android:id="@+id/add_budgetitem_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:layout_below="@id/add_budgetitem_spinner"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Добавить"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/add_budgetitem_value"
+        android:onClick="onConfirmNewBudgetItemClick"/>
+</RelativeLayout>

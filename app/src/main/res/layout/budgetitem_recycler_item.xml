@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@xml/border"
+    android:elevation="2dp"
+    android:translationZ="2dp"
+    android:translationY="1dp"
+
+    android:layout_margin="10dp">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:id="@+id/budgetitem_value_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Count"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="7dp"
+            android:textSize="18sp"
+            android:textColor="#00ff00"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:id="@+id/budgetitem_name_item"
+            android:text="name_value1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="7dp"
+            android:textSize="18sp"
+            android:textColor="#404040"
+            />
+        <TextView
+            android:id="@+id/budgetitem_item_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+
+
+</LinearLayout>

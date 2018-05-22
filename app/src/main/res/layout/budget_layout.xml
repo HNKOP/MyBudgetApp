@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/back2">
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textview_pos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Доходы"
+                android:textSize="20sp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="72dp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/pos_recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_pos"/>
+
+            <TextView
+                android:id="@+id/textview_neg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Расходы"
+                android:textSize="20sp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="72dp"
+                android:layout_below="@id/pos_recycle_view"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/neg_recycle_view"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_neg"/>
+        </RelativeLayout>
+
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_budgetitem_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="16dp"
+        android:layout_gravity="end|bottom"
+
+        android:clickable="true"
+        android:onClick="onAddNewBudgetItemFABClc"
+        android:tint="@android:color/white"
+        app:backgroundTint="#14BFA2"
+        app:elevation="0dp"
+        app:fabSize="normal"
+        app:rippleColor="@android:color/transparent"
+        />
+</android.support.design.widget.CoordinatorLayout>

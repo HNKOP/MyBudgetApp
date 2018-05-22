@@ -1,5 +1,6 @@
 package com.mybudgetapp.emilg.mybudgetapp;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public void buttonPushOnClick(View view) {
         //Toast.makeText(getApplicationContext(),"Button Clicked!",Toast.LENGTH_SHORT).show();
         HttpTask httpTask = new HttpTask();
-        httpTask.execute("http://192.168.1.38:58368/api/values/","GET");
+        httpTask.execute("/api/values/","GET");
         try
         {
             String res = httpTask.get();
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public void buttonPushPostOnClick(View view) {
         //Пост запрос
         HttpTask httpTask = new HttpTask();
-        httpTask.execute("http://192.168.1.38:58368/api/values/","POST","DATA");
+        httpTask.execute("/api/values/","POST","DATA");
         try
         {
             String res = httpTask.get();
@@ -66,4 +67,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void buttonLogOnClick(View view) {
+        Intent intent = new Intent(this,LogActivity.class);
+        startActivity(intent);
+    }
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/back2">
+
+
+    <TextView
+        android:id="@+id/name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Мой Бюджет"
+        android:textSize="40sp"
+        android:textColor="#000000"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
+    <EditText
+        android:id="@+id/editname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:hint="Введите имя"
+        android:layout_below="@id/name_textview"
+        android:layout_marginTop="75dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="15dp"/>
+    <EditText
+        android:id="@+id/editpass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editname"
+        android:hint="Введите пароль"
+        android:layout_margin="15dp"
+        />
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/auth_login_button"
+        android:layout_below="@id/editpass"
+        android:text="Войти"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="15dp"
+        android:onClick="buttonLoginOnClick"/>
+    <Button
+        android:id="@+id/reg_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/login_button"
+        android:text="Зарегистрироваться"
+        android:background="@drawable/auth_login_button"
+        android:onClick="buttonRegOnClick"/>
+</RelativeLayout>

@@ -35,12 +35,16 @@ public class HttpTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... path) {
 
         String content = "no value";
+        String urlstring = "http://192.168.1.38:58368";
+        String urlstringBeeline = "http://192.168.43.211:58368";
+        urlstring = urlstring + path[0];
+        urlstringBeeline = urlstringBeeline + path[0];
         try{
             switch(path[1])
             {
-                case "GET": content = getContent(path[0]);
+                case "GET": content = getContent(urlstringBeeline);
                     break;
-                case "POST": content = postContent(path[0],path[2]);
+                case "POST": content = postContent(urlstringBeeline,path[2]);
                     break;
             }
 
@@ -87,18 +91,16 @@ public class HttpTask extends AsyncTask<String, Void, String> {
         BufferedReader reader=null;
         try
         {
-            URL url=new URL("http://192.168.1.38:58368/api/values/");
+            URL url=new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(15000 /* milliseconds */);
+            conn.setConnectTimeout(15000 /* milliseconds */);
             conn.setDoOutput(true);
             conn.setDoInput(true);
             conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             conn.setRequestMethod("POST");
-
-
-
-
-            JSONObject postDataParams = new JSONObject();
-            postDataParams.put("data","data2");
+            JSONObject postDataParams = new JSONObject(data);
+           // postDataParams.put("data","data2");
 
             DataOutputStream localDataOutputStream = new DataOutputStream(conn.getOutputStream());
             //localDataOutputStream.writeBytes(postDataParams.toString());
