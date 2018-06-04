@@ -6,34 +6,68 @@
         android:id="@+id/choose_type_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Выберите тип транзакции:"
+        android:text="Тип транзакции:"
         android:textSize="18sp"
-        android:layout_margin="10dp"/>
+
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="50dp"/>
 
     <EditText
         android:id="@+id/add_budgetitem_nameview"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:hint="Название"/>
+        android:hint="Название"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/choose_type_textview"
+        android:layout_margin="10dp"/>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@id/add_budgetitem_nameview"
+        android:layout_below="@id/choose_type_textview"
+        android:src="@drawable/baseline_keyboard_voice_black_18dp"
+        android:onClick="onClickRecord"/>
+
     <Spinner
         android:id="@+id/add_budgetitem_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/add_budgetitem_nameview"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="50dp"
         android:entries="@array/budgetitem_types"
         android:layout_toRightOf="@id/choose_type_textview"
-        ></Spinner>
+
+        />
     <EditText
         android:id="@+id/add_budgetitem_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        android:layout_below="@id/add_budgetitem_spinner"/>
+        android:layout_below="@id/add_budgetitem_nameview"
+        android:hint="Сумма (в рублях)"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"/>
+
     <Button
+        android:id="@+id/add_budgetitem_addbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Добавить"
+        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/add_budgetitem_value"
         android:onClick="onConfirmNewBudgetItemClick"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Вернуться"
+        android:layout_below="@id/add_budgetitem_addbutton"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickReturn"/>
 </RelativeLayout>

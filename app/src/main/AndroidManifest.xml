@@ -3,6 +3,7 @@
     package="com.mybudgetapp.emilg.mybudgetapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
 
     <application
@@ -13,37 +14,42 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".LogActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
     </activity>
 
         <activity android:name=".ProfileActivity"
             android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
     </activity>
 
-        <activity android:name=".RegActivity">
+        <activity android:name=".RegActivity"
+            android:screenOrientation="portrait">
 
         </activity>
 
-        <activity android:name=".AddBudgetActivity">
+        <activity android:name=".AddBudgetActivity"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".BudgetActivity">
+        <activity android:name=".BudgetActivity"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".AddBudgetItemActivity">
+        <activity android:name=".AddBudgetItemActivity"
+            android:screenOrientation="portrait">
 
         </activity>
 

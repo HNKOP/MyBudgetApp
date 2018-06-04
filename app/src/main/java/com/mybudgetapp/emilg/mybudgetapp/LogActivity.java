@@ -73,6 +73,8 @@ public class LogActivity extends AppCompatActivity {
                     editor.putInt("PROFILE_ID", jsonAnswer2.getInt("id"));
                     editor.apply();
                     Intent intent = new Intent(this,ProfileActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 }
 

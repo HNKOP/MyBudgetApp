@@ -13,13 +13,24 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/textview_pos"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Доходы"
                 android:textSize="20sp"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:paddingLeft="72dp"/>
+            <TextView
+                android:id="@+id/textview_pos_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="value"
+                android:textSize="20sp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="72dp"
+                android:layout_marginLeft="25dp"
+                android:layout_toRightOf="@id/textview_pos"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/pos_recycle_view"
@@ -29,13 +40,26 @@
 
             <TextView
                 android:id="@+id/textview_neg"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Расходы"
                 android:textSize="20sp"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:paddingLeft="72dp"
+                android:layout_below="@id/pos_recycle_view"
+                />
+            <TextView
+                android:id="@+id/textview_neg_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="value"
+                android:textSize="20sp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="72dp"
+                android:layout_marginLeft="25dp"
+                android:layout_toRightOf="@id/textview_neg"
                 android:layout_below="@id/pos_recycle_view"/>
 
             <android.support.v7.widget.RecyclerView
@@ -54,7 +78,7 @@
         android:id="@+id/add_budgetitem_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:src="@drawable/baseline_add_black_18dp"
         android:layout_margin="16dp"
         android:layout_gravity="end|bottom"
 

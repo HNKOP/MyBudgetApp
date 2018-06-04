@@ -8,12 +8,17 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +29,7 @@ import com.mybudgetapp.emilg.mybudgetapp.Items.BudgetItem;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 
 import java.io.File;
@@ -50,28 +56,17 @@ public class ProfileActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile_layout);
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing);
-        imageView = mCollapsingToolbarLayout.findViewById(R.id.backdrop);
+        getMenuInflater().inflate(R.menu.main_menu,menu);
 
-        setSupportActionBar(mToolbar);
+        return super.onCreateOptionsMenu(menu);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        setAvatar();
+    }
 
-        mRecyclerView =  (RecyclerView) findViewById(R.id.budget_recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        sharedPref = getSharedPreferences("GlobalPref",MODE_PRIVATE);
-        editor = sharedPref.edit();
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         try
         {
@@ -83,25 +78,7 @@ public class ProfileActivity extends AppCompatActivity {
             mRecyclerView.setAdapter(mAdapter);
 
 
-            mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(this,
-                    mRecyclerView, new RecyclerTouchListener.ClickListener() {
-                @Override
-                public void onClick(View view, final int position) {
-                     TextView textViewId = (TextView) view.findViewById(R.id.budget_item_id);
-                      Toast.makeText(ProfileActivity.this,textViewId.getText().toString() , Toast.LENGTH_SHORT).show();
-                    editor.putInt("BUDGET_ID", Integer.valueOf(textViewId.getText().toString()));
-                    editor.apply();
-                    Intent intent = new Intent(getApplicationContext(),BudgetActivity.class);
-                    startActivity(intent);
 
-                }
-
-                @Override
-                public void onLongClick(View view, int position) {
-                    Toast.makeText(getApplicationContext(), "Long press on position :"+position,
-                            Toast.LENGTH_LONG).show();
-                }
-            }));
         }
         catch (Exception e)
         {
@@ -109,7 +86,82 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
 
+    }
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.profile_layout);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing);
+        imageView = mCollapsingToolbarLayout.findViewById(R.id.backdrop);
+
+        setSupportActionBar(mToolbar);
+
+
+        setAvatar();
+
+        mRecyclerView =  (RecyclerView) findViewById(R.id.budget_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        sharedPref = getSharedPreferences("GlobalPref",MODE_PRIVATE);
+        editor = sharedPref.edit();
+
+        setTitle("Профиль");
+
+
+        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(this,
+                mRecyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, final int position) {
+                TextView textViewId = (TextView) view.findViewById(R.id.budget_item_id);
+                // Toast.makeText(ProfileActivity.this,textViewId.getText().toString() , Toast.LENGTH_SHORT).show();
+                editor.putInt("BUDGET_ID", Integer.valueOf(textViewId.getText().toString()));
+                editor.apply();
+                Intent intent = new Intent(getApplicationContext(),BudgetActivity.class);
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                //   Toast.makeText(getApplicationContext(), "Long press on position :"+position,
+                //          Toast.LENGTH_LONG).show();
+                final View content = LayoutInflater.from(getApplicationContext()).inflate(R.layout.alertdialog_layout, null);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
+                builder.setCancelable(false);
+
+                final Button OKBtn = content.findViewById(R.id.OK_btn);
+                final Button cancelBtn = content.findViewById(R.id.CANCEL_btn);
+
+                builder.setView(content);
+                final AlertDialog alert = builder.create();
+                alert.show();
+
+                cancelBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alert.cancel();
+                    }
+                });
+
+                OKBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alert.dismiss();
+                    }
+                });
+
+            }
+        }));
 
     }
 
@@ -127,7 +179,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             String res = httpTask.get();
 
-
+            list = new ArrayList<>();
 
             res = res.replace("\\\"","\"");
             res = res.substring(1,res.length()-1);
@@ -135,7 +187,7 @@ public class ProfileActivity extends AppCompatActivity {
             for(int i = 0; i < jsonArray.length(); i++)
             {
                 list.add(new BudgetItem(jsonArray.getJSONObject(i).getInt("Id")
-                        ,jsonArray.getJSONObject(i).getString("Name"),"НЕИЗВ",jsonArray.getJSONObject(i).getDouble("Count")));
+                        ,jsonArray.getJSONObject(i).getString("Name")," ",jsonArray.getJSONObject(i).getDouble("Count")));
             }
            // JSONObject jsonAnswer = new JSONObject(res);
 
@@ -158,6 +210,12 @@ public class ProfileActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
                 onBackPressed();
+                return true;
+            case R.id.action_change:
+                Intent intent = new Intent(this,LogActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
